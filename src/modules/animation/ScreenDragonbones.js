@@ -49,6 +49,8 @@ var ScreenDragonbones = cc.Layer.extend({
         this.lblResult.setAnchorPoint(0.5,0.5);
         this.lblResult.retain();
         this.testPlayAnimation();
+
+
     },
     onEnter:function(){
         this._super();

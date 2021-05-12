@@ -3,6 +3,7 @@ var gv = gv || {};
 
 var DESIGN_RESOLUTION_WIDTH = 1136;
 var DESIGN_RESOLUTION_HEIGHT = 640;
+
 cc.game.onStart = function () {
     if (!cc.sys.isNative && document.getElementById("cocosLoading")) //If referenced loading.js, please remove it
         document.body.removeChild(document.getElementById("cocosLoading"));
@@ -37,3 +38,33 @@ cc.game.onStart = function () {
     }, this);
 };
 cc.game.run();
+
+/*
+var ScreenTest = cc.Layer.extend({
+    _itemMenu:null,
+    _beginPos:0,
+    isMouseDown:false,
+
+    ctor:function() {
+        this._super();
+        var size = cc.director.getVisibleSize();
+        var btnYcoord = size.height / 2;
+        var btnXcoord = size.width / 2;
+
+        var btnTest = gv.commonButton(100, 60, btnXcoord, btnYcoord, "Test");
+        this.addChild(btnTest);
+    }
+})
+
+cc.game.onStart = function() {
+    cc.view.enableRetina(true);
+
+    cc.view.adjustViewPort(true);
+    jsb.fileUtils.addSearchPath(fr.NativeService.getFolderUpdateAssets(), true);
+    jsb.fileUtils.addSearchPath(fr.NativeService.getFolderUpdateAssets() + "/res", true);
+    cc.loader.resPath = "res";
+
+    cc.LoaderScene.preload(g_resources, )
+    fr.view(ScreenTest);
+}
+*/

@@ -41,5 +41,8 @@ var ScreenMenu = cc.Layer.extend({
     {
         fr.view(ScreenDragonbones);
     }
-
+    onSelectWhackaMole:function(sender)
+    {
+        fr.view(ScreenWackaMole);
+    }
 });
