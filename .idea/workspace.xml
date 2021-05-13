@@ -2,12 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e4d55f2b-12a8-484d-a811-f49e89a3e91c" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/modules/animation/ScreenWhackaMole.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project.json" beforeDir="false" afterPath="$PROJECT_DIR$/project.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modules/animation/ScreenWackaMole.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modules/mainmenu/ScreenMenu.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/mainmenu/ScreenMenu.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modules/animation/ScreenWhackaMole.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/animation/ScreenWhackaMole.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -697,7 +693,7 @@
       <workItem from="1552028738912" duration="21000" />
       <workItem from="1553831685560" duration="3045000" />
       <workItem from="1620808590249" duration="6605000" />
-      <workItem from="1620886167439" duration="13798000" />
+      <workItem from="1620886167439" duration="15397000" />
     </task>
     <servers />
   </component>

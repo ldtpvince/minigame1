@@ -8,23 +8,27 @@ var ScreenWhackaMole = cc.Layer.extend({
         let size = cc.director.getVisibleSize();
 
         let background = cc.Sprite.create("/assests/game/background/background.png");
-        this.addChild(background);
+        this.addChild(background, 0);
         background.setPosition(size.width/2, size.height/2);
-        this.setScale(1.0);
+        //this.setScale(1.0);
         let moles = [[],[]];
 
-        let moleWidth = 190;
-        let moleHeight = 144;
+        let moleWidth = 95;
+        let moleHeight = 72;
+
         for (i = -2; i <= 2; ++i) {
             moles.push([]);
-            for (j = -2; j <=2 ; ++j) {
+            for (j = -2; j <= 2; ++j) {
 
                 let tempSprite = cc.Sprite.create("/assests/game/char/sprites.png", cc.rect(0, 0, 190, 144));
+                tempSprite.setScale(0.5);
 
-                this.addChild(tempSprite);
                 let positionX = size.width /2 + i * moleWidth;
                 let positionY = size.height /2 + j * moleHeight;
-                this.setPosition(positionX, positionY);
+                tempSprite.setPosition(positionX, positionY);
+                this.addChild(tempSprite, 1);
+
+
                 moles[i + 2][j + 2] = 0;
             }
         }
