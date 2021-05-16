@@ -38,8 +38,8 @@ cc.game.onStart = function () {
         //modules
         testnetwork.connector = new testnetwork.Connector(gv.gameClient);
 
-        //fr.view(ScreenMenu);
-        fr.view(ScreenWhackaMole);
+        fr.view(ScreenMenu);
+        //fr.view(ScreenWhackaMole);
         //fr.view(ScreenLose);
     }, this);
 };

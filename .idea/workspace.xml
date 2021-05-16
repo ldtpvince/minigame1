@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e4d55f2b-12a8-484d-a811-f49e89a3e91c" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modules/animation/ScreenWhackaMole.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/animation/ScreenWhackaMole.js" afterDir="false" />
-    </list>
+    <list default="true" id="e4d55f2b-12a8-484d-a811-f49e89a3e91c" name="Default" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -693,6 +690,7 @@
       <workItem from="1620956768954" duration="14267000" />
       <workItem from="1621006018587" duration="401000" />
       <workItem from="1621006441363" duration="1465000" />
+      <workItem from="1621155851718" duration="778000" />
     </task>
     <servers />
   </component>
