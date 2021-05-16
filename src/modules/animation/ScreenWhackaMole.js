@@ -404,7 +404,14 @@ var ScreenWhackaMole = cc.Layer.extend({
                     this.molesState[i][j] += 1;
                     //cc.log([i, j]);
                 }
-                else if (this.molesState[i][j] >= this.level * 10 || this.molesState[i][j] < 0) {
+                else if (this.molesState[i][j] < 0) {
+                    this.molesState[i][j] = 0;
+                    let tag = i * 5 + j;
+
+                    this.moleUpSprites[tag].setVisible(false);
+                    this.moleDownSprites[tag].setVisible(true);
+                }
+                else if (this.molesState[i][j] > this.level) {
                     this.molesState[i][j] = 0;
                     let tag = i * 5 + j;
 

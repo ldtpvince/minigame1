@@ -58,7 +58,7 @@ var ScreenLose = cc.Layer.extend({
                 // cc.log([rect.x, rect.y, rect.width, rect.height]);
                 // cc.log([boundBox.x, boundBox.y, boundBox.width, boundBox.height]);
                 if (cc.rectContainsPoint(rect, pos)) {
-                    //fr.view(ScreenWhackaMole);
+                    fr.view(ScreenWhackaMole);
                     return true;
                 }
                 return false;
