@@ -309,6 +309,8 @@
   </component>
   <component name="PropertiesComponent">
     <property name="FullScreen" value="false" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file://D:/Project/lgrc_project/client/HelloJavascript/src/framework/Framework.js" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
@@ -595,7 +597,6 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JSBinding.Win32Debug" />
         <item itemvalue="JavaScript Debug.index.html" />
       </list>
     </recent_temporary>
@@ -690,6 +691,8 @@
       <workItem from="1620808590249" duration="6605000" />
       <workItem from="1620886167439" duration="15501000" />
       <workItem from="1620956768954" duration="14267000" />
+      <workItem from="1621006018587" duration="401000" />
+      <workItem from="1621006441363" duration="1465000" />
     </task>
     <servers />
   </component>
@@ -788,18 +791,6 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="cocos javascript">
-          <url>file://$PROJECT_DIR$/simulator/win32/script/jsb_boot.js</url>
-          <line>449</line>
-          <option name="timeStamp" value="159" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="cocos javascript">
-          <url>file://$PROJECT_DIR$/frameworks/js-bindings/api/jsb_cocos2dx_auto_api.js</url>
-          <line>20903</line>
-          <option name="timeStamp" value="162" />
-        </line-breakpoint>
-      </breakpoints>
       <default-breakpoints>
         <breakpoint enabled="true" suspend="THREAD" type="java-exception" />
         <breakpoint enabled="true" log-message="true" type="javascript-exception" />

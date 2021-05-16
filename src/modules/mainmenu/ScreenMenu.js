@@ -55,10 +55,10 @@ var touchListener = cc.EventListener.create({
     event:cc.EventListener.TOUCH_ONE_BY_ONE,
     swallowTouches:true,
     onTouchBegan:function(touch, event) {
-        var target = event.getCurrentTarget();
+        let target = event.getCurrentTarget();
         var locationInNode = target.convertToNodeSpace(touch.getLocation());
-        var s = target.getContentSize();
-        var rect = cc.rect(0,0,s.width, s.height);
+        let s = target.getContentSize();
+        let rect = cc.rect(0,0,s.width, s.height);
         if(cc.rectContainsPoint(rect,locationInNode))
         {
             /*cc.log("sprite began ..x = " + locationInNode.x + ". y = " + locationInNode.y);
@@ -68,7 +68,21 @@ var touchListener = cc.EventListener.create({
         }
         return false;
     }
-})
+});
+
+var mouseListener = cc.EventListener.create({
+    event:cc.EventListener.MOUSE,
+    onMouseDown:function(event) {
+        let pos = event.getLocation(), target = event.getCurrentTarget();
+        let s = target.getContentSize();
+        let rect = cc.rect(0,0,s.width, s.height);
+        if (cc.rectContainsPoint(rect, pos)) {
+            fr.view(ScreenWhackaMole);
+            return true;
+        }
+        return false;
+    }
+ });
 
 var ScreenMenu = cc.Layer.extend({
     _itemMenu:null,
@@ -86,11 +100,11 @@ var ScreenMenu = cc.Layer.extend({
         background.setScale(1.0);
 
         let btnStart = cc.Sprite.create("/assests/game/button/icon_play.png")
-        //let btnStartNode = new Node();
         btnStart.setPosition(size.width/2, size.height / 1.8);
         btnStart.setScale(3.0);
         this.addChild(btnStart);
 
-        cc.eventManager.addListener(touchListener, btnStart);
+        //cc.eventManager.addListener(touchListener, btnStart);
+        cc.eventManager.addListener(mouseListener, btnStart);
     }
 })
