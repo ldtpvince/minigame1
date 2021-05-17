@@ -116,6 +116,8 @@ var ScreenMenu = cc.Layer.extend({
          });
 
         //cc.eventManager.addListener(touchListener, btnStart);
+        cc.audioEngine.setMusicVolume(0.7);
+        cc.audioEngine.playMusic(res.mainMusic, true);
         cc.eventManager.addListener(mouseListener, this.btnStart);
     },
     update:function() {

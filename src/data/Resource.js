@@ -18,6 +18,9 @@ var res = {
     //popup
     ZCSD_POPUP_MINI_GAME:"zcsd/game/mini_game/PopupMiniGame.json",
 
+    //music
+    mainMusic: "D:/workspace/GameClientJS/minigame1/res/music/mainMusic.wav",
+
     //images
     Slot1_png : "zcsd/slot1.png"
 };
