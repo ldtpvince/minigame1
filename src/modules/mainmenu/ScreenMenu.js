@@ -82,8 +82,8 @@ var ScreenMenu = cc.Layer.extend({
 
         var background = cc.Sprite.create("/assests/game/background/background.png");
         this.addChild(background);
-        background.setScale(ratio);
-        cc.view.setFrameSize(background.width * ratio, background.height * ratio);
+        //background.setScale(ratio);
+        //cc.view.setFrameSize(background.width * ratio, background.height * ratio);
         let size = cc.director.getVisibleSize();
 
         background.setPosition(size.width/2, size.height/2);
@@ -116,6 +116,8 @@ var ScreenMenu = cc.Layer.extend({
          });
 
         //cc.eventManager.addListener(touchListener, btnStart);
+        cc.audioEngine.setMusicVolume(0.7);
+        //cc.audioEngine.playMusic(res.mainMusic, true);
         cc.eventManager.addListener(mouseListener, this.btnStart);
     },
     update:function() {

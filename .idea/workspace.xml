@@ -311,7 +311,7 @@
     <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file://D:/Project/lgrc_project/client/HelloJavascript/src/framework/Framework.js" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../GameServer" />
     <property name="options.lastSelected" value="web-ide.project.structure" />
     <property name="options.searchVisible" value="true" />
     <property name="options.splitter.details.proportions" value="0.2" />
@@ -691,6 +691,7 @@
       <workItem from="1621006018587" duration="401000" />
       <workItem from="1621006441363" duration="1465000" />
       <workItem from="1621155851718" duration="778000" />
+      <workItem from="1621249570535" duration="25000" />
     </task>
     <servers />
   </component>
