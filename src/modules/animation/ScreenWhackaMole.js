@@ -30,11 +30,11 @@ var ScreenWhackaMole = cc.Layer.extend({
         for (let i = 0; i < this.numMole; ++i) {
             this.molesState[i] = new Array(this.numMole);
         }
-        this.setScale(0.75)
+        //this.setScale(0.75)
         let size = cc.director.getVisibleSize();
 
         this.background = cc.Sprite.create("/assests/game/background/background.png");
-        cc.view.setFrameSize(this.background.width * ratio, this.background.height * ratio);
+        //cc.view.setFrameSize(this.background.width * ratio, this.background.height * ratio);
         
 
         this.addChild(this.background);
@@ -68,6 +68,18 @@ var ScreenWhackaMole = cc.Layer.extend({
         this.addChild(this.heartLabel, 1);
         this.heartLabel.setPosition(heartSprite.getPosition().x + 60, heartSprite.getPosition().y - 2);
 
+        // Hammer
+        this.hammer = cc.Sprite.create("/assests/game/item/hammer.png");
+        this.addChild(this.hammer, 3);
+        this.hammer.setScale(0.1);
+        this.hammer.setAnchorPoint(cc.p(0.5, 0.5));
+        this.hammer.setRotation(130);
+        
+        //cc.log([this.hammer.width, this.hammer.height]);
+        //cc.log([this.hammer.getAchorPoint()]);
+        
+        //this.hammer.setPosition(-this.hammer.width * ratio * 0.5, -this.hammer.height * ratio * 0.5);
+        this.hammer.setPosition(0, 0);
         // init mole pos array
 
         // let mouseListener = cc.EventListener.create({
@@ -248,14 +260,17 @@ var ScreenWhackaMole = cc.Layer.extend({
             event:cc.EventListener.MOUSE,
             //swallowTouches: true,
             //ismousedown:false,
-            onMouseDown:function(event, moleUpSprites) {
+            onMouseDown:function(event) {
                 //cc.log('Mouse Down1');
         
                 var pos = event.getLocation(), target = event.getCurrentTarget();
                 let s = target.getContentSize();
-                let targetPos = target.getPosition();
             
                 var rect = cc.rect(0, 0, s.width, s.height);
+                target.hammer.x = pos.x;
+                target.hammer.y = pos.y;
+                let r = target.hammer.getRotation();
+                target.hammer.runAction(cc.rotateTo(0, 100));
                 if (cc.rectContainsPoint(rect, pos)) {
                     for (let i = 0; i < 5; ++i) {
                         for (let j = 0; j < 5; ++j) {
@@ -285,29 +300,37 @@ var ScreenWhackaMole = cc.Layer.extend({
                 //cc.log('Mouse down outside');
                 return false;
             },
-            onMouseMoved:function(event) {
-
+            onMouseMove:function(event) {
+                var pos = event.getLocation();
+                var target = event.getCurrentTarget();
+                target.hammer.x = pos.x;
+                target.hammer.y = pos.y;
+                var draw = new cc.DrawNode();
+                draw.drawDot(target.hammer.getPosition(), 10, cc.color(0, 255, 255, 255));
+                
+                cc.log(pos.x);
+                cc.log(target.hammer.x);
+                //cc.log([target.getBoundingBox().width]);
+                //target.hammer.x = pos.x + target.hammer.width * ratio;
+                //target.hammer.y = pos.y - target.hammer.height * 0.1 * ratio;
             },
             onMouseUp:function(event) {
+                var pos = event.getLocation();
+                var target = event.getCurrentTarget();
+                target.hammer.x = pos.x;
+                target.hammer.y = pos.y;
+                target.hammer.runAction(cc.rotateTo(0, 130));
                 //cc.log('Mouse up');
                 //this.ismousedown = false;
             }
         });
 
-        // for (let i = 0; i < numMole * numMole; ++i) {
-        //     cc.eventManager.addListener(mouseListener, this.moles)
-        // }
         cc.eventManager.addListener(mouseListener, this);
         this.schedule(this.updateTime(60 * 5, this.timeLabel), 1);
         this.schedule(this.update, 0.8);
     },
     update:function() {
-
-        //cc.log(this.numMole);
-        //this.addMouseListener();
-
         this.updateState();
-        //cc.log("Crash here");
 
         this.checkMoleUp();
         this.updateHeart();
@@ -344,7 +367,7 @@ var ScreenWhackaMole = cc.Layer.extend({
     updateHeart:function() {
         if (this.heart < 0) {
             this.unscheduleAllCallbacks();
-            fr.view(ScreenLose);
+            //fr.view(ScreenLose);
         } 
         else {
             this.heartLabel.setString(this.heart.toString());    
@@ -376,40 +399,22 @@ var ScreenWhackaMole = cc.Layer.extend({
         if (this.moleUpCnt <= this.numMole * this.numMole) {
             this.molesState[posXMole][posYMole] = 1;
             let tag = posXMole * 5 + posYMole
-           
-            //cc.log("Crash here");
-            //cc.log(posXMole * 5 + posYMole);
-            //this.moleSprites[tag].runAction(this.moleUpAni);
-            // this.moleDownSprites[tag].setVisible(false);
-            // this.moleUpSprites[tag].setVisible(true);
-            // cc.log([this.molesState[posXMole][ posYMole]]);
-            // cc.log('\n');
-            //this.moleUpSprites[tag].getEventListener().setEnabled(true);
 
             this.moleDownSprites[tag].runAction(cc.sequence(this.moleUpAni.clone()));
-            
-            //this.addChild(this.moleSprites[tag], 1);
-            //this.getChildByTag(posXMole * 5 + posYMole).runAction(animate);
-            //cc.log(this.getChildByTag(posXMole * 5 + posYMole).getPosition().height);
         }
     },
     checkMoleUp:function() {
         for (let i = 0; i < 5; ++i) {
             for (let j = 0; j < 5; ++j) {
-                //cc.log("Crash here");
 
                 if (this.molesState[i][j] > 0 && this.molesState[i][j] <= this.level) {
                     this.molesState[i][j] += 1;
-                    //cc.log([i, j]);
                 }
                 else if (this.molesState[i][j] < 0) {
                     this.molesState[i][j] = 0;
                     let tag = i * 5 + j;
 
-                    // this.moleUpSprites[tag].setVisible(false);
-                    // this.moleDownSprites[tag].setVisible(true);
                     this.moleDownSprites[tag].runAction(cc.sequence(this.moleDownAni.clone()));
-
                 }
                 else if (this.molesState[i][j] > this.level) {
                     this.molesState[i][j] = 0;
@@ -417,18 +422,7 @@ var ScreenWhackaMole = cc.Layer.extend({
 
                     this.heart--;
 
-                    // this.moleUpSprites[tag].setVisible(false);
-                    // this.moleDownSprites[tag].setVisible(true);
                     this.moleDownSprites[tag].runAction(cc.sequence(this.moleDownAni.clone()));
-
-                    // let pos = this.moleSprites[tag].getPosition();
-                    // this.moleSprites[tag].removeFromParent();
-                    // this.moleSprites[tag] = this.moleDown;
-                    // this.moleSprites[tag].setPosition(pos.x, pos.y);
-                    // this.addChild(this.moleSprites[tag], 1);
-                    //this.moleSprites[posXMole * 5 + posYMole].runAction(this.moleDownAni);
-                    
-                    //this.getChildByTag(i * 5 + j).runAction(animate);
                 }
             }
         }

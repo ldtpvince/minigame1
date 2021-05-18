@@ -28,7 +28,7 @@ var ScreenLose = cc.Layer.extend({
 
         let background = cc.Sprite.create("/assests/game/background/background.png");
         this.addChild(background);
-        cc.view.setFrameSize(background.width * ratio, background.height * ratio);
+        //cc.view.setFrameSize(background.width * ratio, background.height * ratio);
         let size = cc.director.getVisibleSize();
 
         background.setPosition(size.width/2, size.height/2);
