@@ -43,7 +43,7 @@ var ScreenWhackaMole = cc.Layer.extend({
         // Score
         let scoreSprite = cc.Sprite.create("/assests/game/item/icon_score.png");
         this.addChild(scoreSprite, 1);
-        scoreSprite.setPosition(size.width / 2 - 2 * scoreSprite.width, size.height - 2 * scoreSprite.height * ratio);
+        scoreSprite.setPosition(size.width / 2 - 2 * scoreSprite.width, size.height - 4 * scoreSprite.height);
 
         let blockSize = cc.size(scoreSprite.width, scoreSprite.height);
         this.scoreLabel = cc.LabelTTF.create(this.score.toString(), "Arial", 32, blockSize, cc.TEXT_ALIGNMENT_CENTER);
@@ -75,82 +75,12 @@ var ScreenWhackaMole = cc.Layer.extend({
         this.hammer.setAnchorPoint(cc.p(0.5, 0.5));
         this.hammer.setRotation(130);
         
-        //cc.log([this.hammer.width, this.hammer.height]);
-        //cc.log([this.hammer.getAchorPoint()]);
-        
-        //this.hammer.setPosition(-this.hammer.width * ratio * 0.5, -this.hammer.height * ratio * 0.5);
         this.hammer.setPosition(0, 0);
-        // init mole pos array
-
-        // let mouseListener = cc.EventListener.create({
-        //     event:cc.EventListener.MOUSE,
-        //     swallowTouches: true,
-        //     //ismousedown:false,
-        //     onMouseDown:function(event) {        
-        //         var pos = event.getLocation(), target = event.getCurrentTarget();
-        //         let s = target.getContentSize();
-        //         let targetPos = target.getPosition();
-            
-        //         var rect = cc.rect(targetPos.x - s.width / 2, targetPos.y - s.height / 2, s.width, s.height);
-        //         if (cc.rectContainsPoint(rect, pos)) {
-        //             cc.log('Mouse Down');
-                    
-        //             for (let i = 0; i < 5; ++i) {
-        //                 for (let j = 0; j < 5; ++j) {
-        
-        //                     let tag = i * 5 + j;
-        //                     //let molePos = tar
-        //                     if (cc.rectContainsPoint(moleBoundingBox, locationInNode) && molesState[tag] >= 1) {
-        //                         molesState[tag]--;
-        //                         if (moleState[tag] <= 0) {
-        //                             moleState[tag] = 0;
-        //                             this.score += 1;
-        //                         }
-        //                         return true;
-        //                     }
-        //                 }
-        //             }
-        
-        //             //this.ismousedown=true;
-        //             return true;
-        //         }
-        //         return false;
-        //     },
-        //     onMouseUp:function(event) {
-        //         //this.ismousedown = false;
-        //     }
-        // });
 
         this.spriteSheet = "/assests/game/char/sprites.png";
-        // this.moleUpSprites = new Array(this.numMole * this.numMole);
-        // for (let i = -2; i <= 2; ++i) {
-        //     for (let j = -2; j <= 2; ++j) {
-        //         let tempSprite = cc.Sprite.create(this.spriteSheet, cc.rect(190 * 4, 0, 190, 144));
-        //         tempSprite.setScale(0.5);
-
-        //         let positionX = size.width /2 + i * moleWidth;
-        //         let positionY = size.height /2 + j * moleHeight;
-        //         tempSprite.setPosition(positionX, positionY);
-        //         let tag = (i + 2) * 5 + j + 2;
-        //         this.addChild(tempSprite, 1);
-        //         tempSprite.setVisible(false);
-
-        //         this.molesState[i + 2][j + 2] = 0;
-
-        //         // let tempListener = mouseListener.clone();
-        //         // tempListener.setEnabled(false);
-
-        //         // cc.eventManager.addListener(tempListener, tempSprite);
-        //         this.moleUpSprites[tag] = tempSprite;
-        //         //cc.log(this.moleSprites[tag].getPosition());
-        //         /*cc.log(i + 2);
-        //         cc.log(j + 2);*/
-        //         //cc.log(this.molesState.length);
-        //     }
-        // }
-
         this.moleDownSprites = new Array(this.numMole * this.numMole);
 
+        // mole down sprites
         for (let i = -2; i <= 2; ++i) {
             for (let j = -2; j <= 2; ++j) {
                 let tempSprite = cc.Sprite.create(this.spriteSheet, cc.rect(0, 0, 190, 144));
@@ -166,24 +96,13 @@ var ScreenWhackaMole = cc.Layer.extend({
                 this.molesState[i + 2][j + 2] = 0;
 
                 this.moleDownSprites[tag] = tempSprite;
-                //cc.log(this.moleSprites[tag].getPosition());
-                /*cc.log(i + 2);
-                cc.log(j + 2);*/
-                //cc.log(this.molesState.length);
             }
         }
 
-        
-
-        //this.spriteSheet = cc.Sprite.create("/assests/game/char/sprites.png");
-        
-
-        // this.moleUp = cc.Sprite.create(this.spriteSheet, cc.rect(190 *4, 0, 190, 144));
-        // this.moleUp.setScale(0.5);
-        // this.moleUp.retain();
-        // this.moleDown = cc.Sprite.create(this.spriteSheet, cc.rect(0, 0, 190, 144));
-        // this.moleDown.setScale(0.5);
-        // this.moleDown.retain();
+        // mole hit sprite
+        this.moleHit = cc.Sprite.create(this.spriteSheet, cc.rect(144 * 6, 0, 190, 144));
+        this.moleHit.setScale(0.5);
+        this.addChild(this.moleHit, 1);
 
         // set up animation
         let frameDatas = [];
@@ -217,44 +136,6 @@ var ScreenWhackaMole = cc.Layer.extend({
         animation = cc.Animation.create(animFrames, 0.08);
         this.moleDownAni = cc.Animate.create(animation);
         this.moleDownAni.retain();
-        //this.addChild(this.moleDownAni);
-
-        // set listener
-
-        // var touchListener = cc.EventListener.create({
-        //     event:cc.EventListener.TOUCH_ONE_BY_ONE,
-        //     swallowTouches:true,
-        //     onTouchBegan:function(touch, event) {
-        //         let target = event.getCurrentTarget();
-        //         var locationInNode = target.convertToNodeSpace(touch.getLocation());
-        //         let s = target.getContentSize();
-        //         let rect = cc.rect(0,0,s.width, s.height);
-        //         if(cc.rectContainsPoint(rect,locationInNode))
-        //         {
-        //             /*cc.log("sprite began ..x = " + locationInNode.x + ". y = " + locationInNode.y);
-        //             cc.log("Start sprite was touched");*/
-                    
-        //             for (let i = 0; i < 5; ++i) {
-        //                 for (let j = 0; j < 5; ++j) {
-        
-        //                     let tag = i * 5 + j;
-        //                     let moleBoundingBox = moleSprites[tag].GetBoundingBox();
-        //                     if (cc.rectContainsPoint(moleBoundingBox, locationInNode) && molesState[tag] >= 1) {
-        //                         molesState[tag]--;
-        //                         if (moleState[tag] <= 0) {
-        //                             moleState[tag] = 0;
-        //                             this.score += 1;
-        //                         }
-        //                         return true;
-        //                     }
-        //                 }
-        //             }
-
-        //             return true;
-        //         }
-        //         return false;
-        //     }
-        // });
         
         let mouseListener = cc.EventListener.create({
             event:cc.EventListener.MOUSE,
@@ -280,15 +161,13 @@ var ScreenWhackaMole = cc.Layer.extend({
                             
                             if (cc.rectContainsPoint(moleBoundingBox, pos) && target.molesState[i][j] >= 1) {
                                 // //target.molesState[i][j]--;
+                                let moleHitPos = target.moleDownSprites[tag].getPosition();
                                 target.molesState[i][j] = -1;
                                 target.score++;
-                                cc.log(target.score);
+                                
+                                // target.moleDownSprites[tag] = target.moleHit;
+                                // target.moleDownSprites[tag].setPosition(moleHitPos);
 
-                                // if (target.molesState[i][j] <= 0) {
-                                //     cc.log('bingo');
-                                //     target.molesState[i][j] = 0;
-                                //     target.score += 1;
-                                // }
                                 return true;
                             }
                         }
@@ -308,11 +187,8 @@ var ScreenWhackaMole = cc.Layer.extend({
                 var draw = new cc.DrawNode();
                 draw.drawDot(target.hammer.getPosition(), 10, cc.color(0, 255, 255, 255));
                 
-                cc.log(pos.x);
-                cc.log(target.hammer.x);
-                //cc.log([target.getBoundingBox().width]);
-                //target.hammer.x = pos.x + target.hammer.width * ratio;
-                //target.hammer.y = pos.y - target.hammer.height * 0.1 * ratio;
+                // cc.log(pos.x);
+                // cc.log(target.hammer.x);
             },
             onMouseUp:function(event) {
                 var pos = event.getLocation();
@@ -320,8 +196,6 @@ var ScreenWhackaMole = cc.Layer.extend({
                 target.hammer.x = pos.x;
                 target.hammer.y = pos.y;
                 target.hammer.runAction(cc.rotateTo(0, 130));
-                //cc.log('Mouse up');
-                //this.ismousedown = false;
             }
         });
 
@@ -345,11 +219,10 @@ var ScreenWhackaMole = cc.Layer.extend({
             let rand = Math.floor(Math.random() * 25);
             posXMole = Math.floor(rand / 5);
             posYMole = rand % 5;
-            //cc.log([posXMole, posYMole]);
+
             if (this.molesState[posXMole][posYMole] <= 0) {
                 break;
             }
-            //cc.log([posXMole, posYMole, moleUpCnt]);
 
         } while(this.moleUpCnt <= this.numMole * this.numMole);
         

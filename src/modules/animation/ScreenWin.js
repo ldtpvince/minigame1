@@ -12,7 +12,7 @@ var ScreenWin = cc.Layer.extend({
         let size = cc.director.getVisibleSize();
 
         background.setPosition(size.width/2, size.height/2);
-        background.setScale(ratio);
+        //background.setScale(ratio);
 
         let blockSize = cc.rect(size.width / 3, size.height /5);
         this.loseLabel = cc.LabelTTF.create("YOU WIN", "Arial", 32, blockSize, cc.TEXT_ALIGNMENT_CENTER);
